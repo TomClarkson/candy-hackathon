@@ -9,6 +9,7 @@
     "@exponent/react-native-navigator": "^0.4.4",
     "react": "^0.14.5",
     "react-native": "^0.25.0",
+    "react-native-communications": "^1.0.1",
     "react-native-drawer-layout": "^1.0.0",
     "react-redux": "^4.4.1",
     "redux": "^3.3.1",

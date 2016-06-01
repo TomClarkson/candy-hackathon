@@ -9,9 +9,9 @@ import {
   Animated
 } from 'react-native';
 import ExNavigator from '@exponent/react-native-navigator';
-import ExRouter from './ExRouter';
+import ExRouter from '../ExRouter';
 
-export default class App extends Component {
+export default class Splash extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,15 +30,33 @@ export default class App extends Component {
 
     var userJson = await AsyncStorage.getItem('user');
     var user = JSON.parse(userJson);
-    if(user) {
+    var nextRoute = user ?
+      ExRouter.getDashboardRoute() :
+      ExRouter.getLoginRoute();
 
-    } else {
-
-    }
+    setTimeout(() => {
+      this.props.navigator.push(nextRoute);
+    }, 1000);
 
   }
   render() {
-    let initialRoute = ExRouter.getSplashRoute();
+    let initialRoute = ExRouter.getLoginRoute();
+
+    return (
+      <View style={{backgroundColor: '#222', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Animated.Image                         // Base: Image, Text, View
+          source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
+          style={{
+            height: 300,
+            width: 300,
+            transform: [                        // `transform` is an ordered array
+              {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`
+            ]
+          }}
+        />
+        <Text style={{fontSize: 26, color: '#fff'}}>React Customer Manager</Text>
+      </View>
+    );
 
     return (
       <ExNavigator
