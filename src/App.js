@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -11,34 +5,17 @@ import {
   Text,
   View
 } from 'react-native';
+import ExNavigator from '@exponent/react-native-navigator';
+import ExRouter from './ExRouter';
 
 export default class App extends Component {
   render() {
+    let initialRoute = ExRouter.getLoginRoute();
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Candy!
-        </Text>
-      </View>
+      <ExNavigator
+        initialRoute={initialRoute}
+        showNavigationBar={false} />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'yellow',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
