@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
 import ExRouter from '../ExRouter';
 
@@ -14,6 +15,11 @@ var hamburgerIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABsCAYAA
 export default class SidebarNav extends React.Component {
   dashboard() {
     console.log('goto dashboard')
+  }
+  async logout() {
+    await AsyncStorage.removeItem('user');
+    const loginRoute = ExRouter.getLoginRoute();
+    this.props.navigator.push(loginRoute);
   }
 	render() {
 		let {onToggleDraw} = this.props;
@@ -25,7 +31,12 @@ export default class SidebarNav extends React.Component {
 				  	  		<Text style={styles.linkTitle}>Dashboard</Text>
 				  	  		<Text style={styles.linkText}>View your tasks</Text>
 				    	</View>
-				    </TouchableHighlight>
+				  </TouchableHighlight>
+          <TouchableHighlight onPress={this.logout.bind(this)}>
+				    	<View style={styles.linkContainer}>
+				  	  		<Text style={styles.linkTitle}>Logout</Text>
+				    	</View>
+				  </TouchableHighlight>
 			</View>
 		);
 	}

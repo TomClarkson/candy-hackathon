@@ -25,10 +25,6 @@ export default class Dashboard extends Component {
   async call() {
     var number = 'tel:9876543210';
     Linking.openURL(number);
-
-    // Linking.canOpenURL(number).then(supported => {
-    //   console.log('sup', supported);
-    // });
   }
   render() {
     var {navigator} = this.props;
